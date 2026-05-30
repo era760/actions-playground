@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Internet Speed Test
-        run: |
-          curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
+      - name: Benchmark Xeon Power
+      run: |
+        echo "=== 円周率5000桁の計算にかかる時間を計測！ ==="
+        time echo "scale=5000; 4*a(1)" | bc -l
