@@ -1,13 +1,20 @@
-name: Ubuntu Echo Test
+name: Run C File from Repo
 
 on: [push]
 
 jobs:
-  say-hello:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Benchmark Xeon Power
-        run: |
-          echo "=== 円周率5000桁の計算にかかる時間を計測！ ==="
-          time echo "scale=5000; 4*a(1)" | bc -l
+      # 【超重要】これを入れることで、リポジトリのファイル（hello.c）をUbuntu内に持ってくる！
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 持ってきたhello.cをgccでビルドする
+      - name: Compile C Program
+        run: gcc hello.c -o my_git_app
+
+      # 実行する
+      - name: Execute Program
+        run: ./my_git_app
