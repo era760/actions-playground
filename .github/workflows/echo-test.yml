@@ -8,8 +8,8 @@ jobs:
 
     steps:
       - name: Check CPU and Memory
-      run: |
-        echo "=== CPU情報 ==="
-        lscpu | grep "Model name"
-        echo "=== メモリ情報 ==="
-        free -h
+        run: |
+          echo "=== CPU情報 ==="
+          lscpu | grep "Model name"
+          echo "=== メモリ情報 ==="
+          free -h
