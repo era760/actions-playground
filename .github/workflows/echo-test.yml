@@ -1,41 +1,20 @@
-name: Linux Kernel Build Benchmark
+name: Explore Ubuntu Environment
 
 on: [push]
 
 jobs:
-  kernel-build:
+  explore-job:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. ビルドに必要なツール（gccや依存ライブラリ）をUbuntuに仕込む
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev bc
+      # 1. リポジトリのファイル（explore.sh）を持ってくる
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      # 2. Linuxカーネルの最新の公式ソースコードを爆速でダウンロード（浅いクローンで時間を節約）
-      - name: Download Linux Kernel Source
-        run: |
-          git clone --depth 1 https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+      # 2. 【超重要】シェルスクリプトを実行できるように「実行権限」をあげる
+      - name: Make Script Executable
+        run: chmod +x explore.sh
 
-      # 3. Xeonの全パワーを開放して、ビルド時間をガチ計測！
-      - name: Benchmark Kernel Build
-        run: |
-          cd linux
-
-          echo "=== 最小限の構成（config）を作成 ==="
-          make defconfig
-
-          echo "=== 利用可能なCPUコア数を確認 ==="
-          nproc
-
-          echo "=== ガチンコ並列ビルド開始！ ==="
-          time make -j$(nproc)
-
-      # 4. 【新登場】ビルドできたファイルをGitHub上に保存する！
-      - name: Upload Kernel Binary
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-kernel-vmlinux # ダウンロードするときの名前
-          path: linux/vmlinux # 保存したいファイルの場所（カーネルの本体ファイル）
-          retension-days: 1
+      # 3. スクリプトをガツンと実行！
+      - name: Run Exploration Script
+        run: ./explore.sh
