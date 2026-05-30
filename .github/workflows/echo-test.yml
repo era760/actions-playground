@@ -7,9 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check CPU and Memory
+      - name: Internet Speed Test
         run: |
-          echo "=== CPU情報 ==="
-          lscpu | grep "Model name"
-          echo "=== メモリ情報 ==="
-          free -h
+          curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
