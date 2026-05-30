@@ -7,5 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run Maximum Waste Echo
-        run: echo "actions-playground が爆誕したぞ！Ubuntuが僕のために回ってる！" 
+      - name: Check CPU and Memory
+      run: |
+        echo "=== CPU情報 ==="
+        lscpu | grep "Model name"
+        echo "=== メモリ情報 ==="
+        free -h
