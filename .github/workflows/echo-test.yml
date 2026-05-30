@@ -1,0 +1,11 @@
+name: Ubuntu Echo Test
+
+on: [push]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Maximum Waste Echo
+        run: echo "actions-playground が爆誕したぞ！Ubuntuが僕のために回ってる！" 
