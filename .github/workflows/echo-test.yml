@@ -7,6 +7,5 @@ jobs:
     runs-on: ubuntu-slim
 
     steps:
-      # 1. リポジトリのファイル（explore.sh）を持ってくる
-      - name: boom
-        run: "sudo systemctl stop"
+      - name: test
+        run: "echo F**k"
