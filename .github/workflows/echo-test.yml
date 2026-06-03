@@ -3,9 +3,15 @@ name: Explore Ubuntu Environment
 on: [push]
 
 jobs:
-  explore-job:
+  build-and-run:
     runs-on: ubuntu-slim
-
+    
     steps:
-      - name: test
-        run: "echo F**k"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Compile C Program
+        run: gcc hello.c -o my_git_app
+
+      - name: Execute Program
+        run: ./my_git_app
